@@ -1,0 +1,20 @@
+type Campground {
+  name: String!
+  image: String
+}
+
+type User {
+  firtName: String!
+  lastName: String!
+}
+
+type Mutation {
+  createCampground(name: String!, image: String!): Campground
+  deleteCampground(id: String!): Campground
+}
+
+type Query {
+  campground: [Campground]!
+  campgrounds: [Campground]!
+}
+

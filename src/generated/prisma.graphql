@@ -1,0 +1,764 @@
+# source: https://us1.prisma.sh/michaelpinaud/camp/dev
+# timestamp: Sat Dec 15 2018 14:22:30 GMT-0800 (Pacific Standard Time)
+
+type AggregateCampground {
+  count: Int!
+}
+
+type AggregateUser {
+  count: Int!
+}
+
+type BatchPayload {
+  """The number of nodes that have been affected by the Batch operation."""
+  count: Long!
+}
+
+type Campground implements Node {
+  id: ID!
+  name: String!
+  image: String!
+  user: User!
+}
+
+"""A connection to a list of items."""
+type CampgroundConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [CampgroundEdge]!
+  aggregate: AggregateCampground!
+}
+
+input CampgroundCreateInput {
+  name: String!
+  image: String!
+  user: UserCreateOneWithoutCampgroundsInput!
+}
+
+input CampgroundCreateManyWithoutUserInput {
+  create: [CampgroundCreateWithoutUserInput!]
+  connect: [CampgroundWhereUniqueInput!]
+}
+
+input CampgroundCreateWithoutUserInput {
+  name: String!
+  image: String!
+}
+
+"""An edge in a connection."""
+type CampgroundEdge {
+  """The item at the end of the edge."""
+  node: Campground!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum CampgroundOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  image_ASC
+  image_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type CampgroundPreviousValues {
+  id: ID!
+  name: String!
+  image: String!
+}
+
+input CampgroundScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [CampgroundScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [CampgroundScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [CampgroundScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  image: String
+
+  """All values that are not equal to given value."""
+  image_not: String
+
+  """All values that are contained in given list."""
+  image_in: [String!]
+
+  """All values that are not contained in given list."""
+  image_not_in: [String!]
+
+  """All values less than the given value."""
+  image_lt: String
+
+  """All values less than or equal the given value."""
+  image_lte: String
+
+  """All values greater than the given value."""
+  image_gt: String
+
+  """All values greater than or equal the given value."""
+  image_gte: String
+
+  """All values containing the given string."""
+  image_contains: String
+
+  """All values not containing the given string."""
+  image_not_contains: String
+
+  """All values starting with the given string."""
+  image_starts_with: String
+
+  """All values not starting with the given string."""
+  image_not_starts_with: String
+
+  """All values ending with the given string."""
+  image_ends_with: String
+
+  """All values not ending with the given string."""
+  image_not_ends_with: String
+}
+
+type CampgroundSubscriptionPayload {
+  mutation: MutationType!
+  node: Campground
+  updatedFields: [String!]
+  previousValues: CampgroundPreviousValues
+}
+
+input CampgroundSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [CampgroundSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [CampgroundSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [CampgroundSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: CampgroundWhereInput
+}
+
+input CampgroundUpdateInput {
+  name: String
+  image: String
+  user: UserUpdateOneRequiredWithoutCampgroundsInput
+}
+
+input CampgroundUpdateManyDataInput {
+  name: String
+  image: String
+}
+
+input CampgroundUpdateManyMutationInput {
+  name: String
+  image: String
+}
+
+input CampgroundUpdateManyWithoutUserInput {
+  create: [CampgroundCreateWithoutUserInput!]
+  connect: [CampgroundWhereUniqueInput!]
+  disconnect: [CampgroundWhereUniqueInput!]
+  delete: [CampgroundWhereUniqueInput!]
+  update: [CampgroundUpdateWithWhereUniqueWithoutUserInput!]
+  updateMany: [CampgroundUpdateManyWithWhereNestedInput!]
+  deleteMany: [CampgroundScalarWhereInput!]
+  upsert: [CampgroundUpsertWithWhereUniqueWithoutUserInput!]
+}
+
+input CampgroundUpdateManyWithWhereNestedInput {
+  where: CampgroundScalarWhereInput!
+  data: CampgroundUpdateManyDataInput!
+}
+
+input CampgroundUpdateWithoutUserDataInput {
+  name: String
+  image: String
+}
+
+input CampgroundUpdateWithWhereUniqueWithoutUserInput {
+  where: CampgroundWhereUniqueInput!
+  data: CampgroundUpdateWithoutUserDataInput!
+}
+
+input CampgroundUpsertWithWhereUniqueWithoutUserInput {
+  where: CampgroundWhereUniqueInput!
+  update: CampgroundUpdateWithoutUserDataInput!
+  create: CampgroundCreateWithoutUserInput!
+}
+
+input CampgroundWhereInput {
+  """Logical AND on all given filters."""
+  AND: [CampgroundWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [CampgroundWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [CampgroundWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  image: String
+
+  """All values that are not equal to given value."""
+  image_not: String
+
+  """All values that are contained in given list."""
+  image_in: [String!]
+
+  """All values that are not contained in given list."""
+  image_not_in: [String!]
+
+  """All values less than the given value."""
+  image_lt: String
+
+  """All values less than or equal the given value."""
+  image_lte: String
+
+  """All values greater than the given value."""
+  image_gt: String
+
+  """All values greater than or equal the given value."""
+  image_gte: String
+
+  """All values containing the given string."""
+  image_contains: String
+
+  """All values not containing the given string."""
+  image_not_contains: String
+
+  """All values starting with the given string."""
+  image_starts_with: String
+
+  """All values not starting with the given string."""
+  image_not_starts_with: String
+
+  """All values ending with the given string."""
+  image_ends_with: String
+
+  """All values not ending with the given string."""
+  image_not_ends_with: String
+  user: UserWhereInput
+}
+
+input CampgroundWhereUniqueInput {
+  id: ID
+}
+
+"""
+The `Long` scalar type represents non-fractional signed whole numeric values.
+Long can represent values between -(2^63) and 2^63 - 1.
+"""
+scalar Long
+
+type Mutation {
+  createCampground(data: CampgroundCreateInput!): Campground!
+  createUser(data: UserCreateInput!): User!
+  updateCampground(data: CampgroundUpdateInput!, where: CampgroundWhereUniqueInput!): Campground
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  deleteCampground(where: CampgroundWhereUniqueInput!): Campground
+  deleteUser(where: UserWhereUniqueInput!): User
+  upsertCampground(where: CampgroundWhereUniqueInput!, create: CampgroundCreateInput!, update: CampgroundUpdateInput!): Campground!
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  updateManyCampgrounds(data: CampgroundUpdateManyMutationInput!, where: CampgroundWhereInput): BatchPayload!
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  deleteManyCampgrounds(where: CampgroundWhereInput): BatchPayload!
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+"""An object with an ID"""
+interface Node {
+  """The id of the object."""
+  id: ID!
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+}
+
+type Query {
+  campgrounds(where: CampgroundWhereInput, orderBy: CampgroundOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Campground]!
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  campground(where: CampgroundWhereUniqueInput!): Campground
+  user(where: UserWhereUniqueInput!): User
+  campgroundsConnection(where: CampgroundWhereInput, orderBy: CampgroundOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CampgroundConnection!
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+
+  """Fetches an object given its ID"""
+  node(
+    """The ID of an object"""
+    id: ID!
+  ): Node
+}
+
+type Subscription {
+  campground(where: CampgroundSubscriptionWhereInput): CampgroundSubscriptionPayload
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+}
+
+type User implements Node {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  campgrounds(where: CampgroundWhereInput, orderBy: CampgroundOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Campground!]
+}
+
+"""A connection to a list of items."""
+type UserConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [UserEdge]!
+  aggregate: AggregateUser!
+}
+
+input UserCreateInput {
+  firstName: String!
+  lastName: String!
+  campgrounds: CampgroundCreateManyWithoutUserInput
+}
+
+input UserCreateOneWithoutCampgroundsInput {
+  create: UserCreateWithoutCampgroundsInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutCampgroundsInput {
+  firstName: String!
+  lastName: String!
+}
+
+"""An edge in a connection."""
+type UserEdge {
+  """The item at the end of the edge."""
+  node: User!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum UserOrderByInput {
+  id_ASC
+  id_DESC
+  firstName_ASC
+  firstName_DESC
+  lastName_ASC
+  lastName_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type UserPreviousValues {
+  id: ID!
+  firstName: String!
+  lastName: String!
+}
+
+type UserSubscriptionPayload {
+  mutation: MutationType!
+  node: User
+  updatedFields: [String!]
+  previousValues: UserPreviousValues
+}
+
+input UserSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: UserWhereInput
+}
+
+input UserUpdateInput {
+  firstName: String
+  lastName: String
+  campgrounds: CampgroundUpdateManyWithoutUserInput
+}
+
+input UserUpdateManyMutationInput {
+  firstName: String
+  lastName: String
+}
+
+input UserUpdateOneRequiredWithoutCampgroundsInput {
+  create: UserCreateWithoutCampgroundsInput
+  connect: UserWhereUniqueInput
+  update: UserUpdateWithoutCampgroundsDataInput
+  upsert: UserUpsertWithoutCampgroundsInput
+}
+
+input UserUpdateWithoutCampgroundsDataInput {
+  firstName: String
+  lastName: String
+}
+
+input UserUpsertWithoutCampgroundsInput {
+  update: UserUpdateWithoutCampgroundsDataInput!
+  create: UserCreateWithoutCampgroundsInput!
+}
+
+input UserWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  firstName: String
+
+  """All values that are not equal to given value."""
+  firstName_not: String
+
+  """All values that are contained in given list."""
+  firstName_in: [String!]
+
+  """All values that are not contained in given list."""
+  firstName_not_in: [String!]
+
+  """All values less than the given value."""
+  firstName_lt: String
+
+  """All values less than or equal the given value."""
+  firstName_lte: String
+
+  """All values greater than the given value."""
+  firstName_gt: String
+
+  """All values greater than or equal the given value."""
+  firstName_gte: String
+
+  """All values containing the given string."""
+  firstName_contains: String
+
+  """All values not containing the given string."""
+  firstName_not_contains: String
+
+  """All values starting with the given string."""
+  firstName_starts_with: String
+
+  """All values not starting with the given string."""
+  firstName_not_starts_with: String
+
+  """All values ending with the given string."""
+  firstName_ends_with: String
+
+  """All values not ending with the given string."""
+  firstName_not_ends_with: String
+  lastName: String
+
+  """All values that are not equal to given value."""
+  lastName_not: String
+
+  """All values that are contained in given list."""
+  lastName_in: [String!]
+
+  """All values that are not contained in given list."""
+  lastName_not_in: [String!]
+
+  """All values less than the given value."""
+  lastName_lt: String
+
+  """All values less than or equal the given value."""
+  lastName_lte: String
+
+  """All values greater than the given value."""
+  lastName_gt: String
+
+  """All values greater than or equal the given value."""
+  lastName_gte: String
+
+  """All values containing the given string."""
+  lastName_contains: String
+
+  """All values not containing the given string."""
+  lastName_not_contains: String
+
+  """All values starting with the given string."""
+  lastName_starts_with: String
+
+  """All values not starting with the given string."""
+  lastName_not_starts_with: String
+
+  """All values ending with the given string."""
+  lastName_ends_with: String
+
+  """All values not ending with the given string."""
+  lastName_not_ends_with: String
+  campgrounds_every: CampgroundWhereInput
+  campgrounds_some: CampgroundWhereInput
+  campgrounds_none: CampgroundWhereInput
+}
+
+input UserWhereUniqueInput {
+  id: ID
+}
