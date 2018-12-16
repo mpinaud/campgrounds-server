@@ -1,3 +1,5 @@
+// Public facing Mutations
+
 const Mutations = {
   async createCampground(_, args, context, info) {
     const campground = await context.db.mutation.createCampground(

@@ -1,20 +1,20 @@
-type Campground {
-  name: String!
-  image: String
-}
+# import * from './generated/prisma.graphql' 
 
-type User {
-  firtName: String!
-  lastName: String!
-}
+# Public facing API
 
 type Mutation {
-  createCampground(name: String!, image: String!): Campground
-  deleteCampground(id: String!): Campground
+  createCampground(name: String!, image: String!): Campground!
+  deleteCampground(id: String!): Campground!
+
+  createUser(firstName: String!, lastName: String!): User!
+  deleteUser(id: String!): User!
 }
 
 type Query {
-  campground: [Campground]!
+  campground(id: String!): Campground!
   campgrounds: [Campground]!
+
+  user(id: String!): User!
+  users: [User]!
 }
 

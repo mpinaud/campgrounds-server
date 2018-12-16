@@ -1,5 +1,5 @@
 # source: https://us1.prisma.sh/michaelpinaud/camp/dev
-# timestamp: Sat Dec 15 2018 14:22:30 GMT-0800 (Pacific Standard Time)
+# timestamp: Sat Dec 15 2018 15:33:14 GMT-0800 (Pacific Standard Time)
 
 type AggregateCampground {
   count: Int!
@@ -18,7 +18,7 @@ type Campground implements Node {
   id: ID!
   name: String!
   image: String!
-  user: User!
+  user: User
 }
 
 """A connection to a list of items."""
@@ -34,7 +34,7 @@ type CampgroundConnection {
 input CampgroundCreateInput {
   name: String!
   image: String!
-  user: UserCreateOneWithoutCampgroundsInput!
+  user: UserCreateOneWithoutCampgroundsInput
 }
 
 input CampgroundCreateManyWithoutUserInput {
@@ -248,7 +248,7 @@ input CampgroundSubscriptionWhereInput {
 input CampgroundUpdateInput {
   name: String
   image: String
-  user: UserUpdateOneRequiredWithoutCampgroundsInput
+  user: UserUpdateOneWithoutCampgroundsInput
 }
 
 input CampgroundUpdateManyDataInput {
@@ -608,9 +608,11 @@ input UserUpdateManyMutationInput {
   lastName: String
 }
 
-input UserUpdateOneRequiredWithoutCampgroundsInput {
+input UserUpdateOneWithoutCampgroundsInput {
   create: UserCreateWithoutCampgroundsInput
   connect: UserWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
   update: UserUpdateWithoutCampgroundsDataInput
   upsert: UserUpsertWithoutCampgroundsInput
 }

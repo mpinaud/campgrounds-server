@@ -1,13 +1,15 @@
+# Schema for Prisma and the Database that lives underneath Prisma
+
 type Campground {
   id: ID! @unique
   name: String!
   image: String!
-  user: User! @relation(name: "UserByCampground")
+  user: User @relation(name: "UserByCampground")
 }
 
 type User {
   id: ID! @unique
   firstName: String!
   lastName: String!
-  campgrounds: [Campground!]! @relation(name: "UserByCampground" onDelete: CASCADE)
+  campgrounds: [Campground]! @relation(name: "UserByCampground" onDelete: CASCADE)
 }
