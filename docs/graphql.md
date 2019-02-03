@@ -28,7 +28,7 @@ mutations:
 ```
 type Mutation {
   createCampground(name: String!, image: String!): Campground
-  deleteCampground(id: String!): Campground
+  deleteCampground(id: ID!): Campground
 }
 ```
 
@@ -42,7 +42,7 @@ mutation CreateCampground($name: String!, $image: String!) {
   }
 }
 
-mutation DeleteCampground($id: String!) {
+mutation DeleteCampground($id: ID!) {
   deleteCampground(id: $id) {
     name
   }

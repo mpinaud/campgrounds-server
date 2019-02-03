@@ -4,17 +4,17 @@
 
 type Mutation {
   createCampground(name: String!, image: String!): Campground!
-  deleteCampground(id: String!): Campground!
+  deleteCampground(id: ID!): Campground!
 
   createUser(firstName: String!, lastName: String!): User!
-  deleteUser(id: String!): User!
+  deleteUser(id: ID!): User!
 }
 
 type Query {
-  campground(id: String!): Campground!
+  campground(id: ID!): Campground!
   campgrounds: [Campground]!
 
-  user(id: String!): User!
+  user(id: ID!): User!
   users: [User]!
 }
 
